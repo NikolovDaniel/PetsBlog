@@ -4,10 +4,12 @@ import Navbar from './Components/Navbar/Navbar';
 import AllPets from './Components/Navbar/AllPets';
 import PetPanel from './Components/Navbar/PetPanel';
 import PetById from './Components/Pet/PetById';
-import PetForm from './Components/Navbar/PetForm';
+import PetForm from './Components/Pet/PetForm';
 import PetRandom from './Components/Navbar/PetRandom';
-import ImageForm from './Components/Navbar/ImageForm';
-import PreferencesForm from './Components/Navbar/PreferencesForm';
+import ImageForm from './Components/Image/ImageForm';
+import PreferencesForm from './Components/Preferences/PreferencesForm';
+import Footer from './Components/Footer/FooterComp';
+import PetEdit from './Components/Pet/PetEdit';
 
 const App = () => {
   return (
@@ -21,7 +23,9 @@ const App = () => {
           <Route path="/pet-add" element={<PetForm />} />
           <Route path="/image-add" element={<ImageForm />} />
           <Route path="/preferences-add" element={<PreferencesForm />} />
+          <Route path="/pet-edit" element={<PetEdit />} />
         </Routes>
+        <Footer />
     </Router>
   );
 };

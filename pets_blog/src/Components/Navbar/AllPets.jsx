@@ -22,7 +22,7 @@ const AllPets = () => {
   );
 
   return (
-    <Container>
+    <Container className='allpets-container'>
       <Form.Control
         type="text"
         className="text-center mb-4 mt-4"

@@ -16,9 +16,8 @@ const PetCard = ({ pet }) => {
           <h3 className='headers text-center fs-3'>{pet.name}</h3>
           </Card.Title>
         <Button 
-        className='readMore btn btn-md fs-5 border-0' 
-        href={`/pet/${pet.id}`} 
-        style={{ backgroundColor: "#012840", color: "orange"}}>More</Button>
+        className='custom-button btn btn-md fs-5 border-0' 
+        href={`/pet/${pet.id}`}>More</Button>
       </Card.Body>
     </Card >
   );
