@@ -37,8 +37,8 @@ const RandomPet = () => {
     if (loading) {
         return <div className='text-center fs-3'>Loading...</div>;
     }
-
-    if (!pet) {
+    
+    if (Object.keys(pet).length === 0) {
         return <div className='text-center fs-3'>Unable to fetch pet data.</div>;
     }
 
@@ -55,17 +55,21 @@ const RandomPet = () => {
                     </div>
                 </Col>
                 <Col xs={12} lg={6} className='d-flex flex-column justify-content-center align-items-center mt-3'>
-                    <div>
+                <div>
                         <h1 className='headers text-center'>{pet.name}</h1>
-                        <p className='lead fs-2 text-center' style={{ color: "#012840" }}>{pet.description}</p>
+                        <p className='lead fs-2 text-center ps-2 pe-2 pt-2 pb-2' style={{ color: "#012840", backgroundColor: "orange", borderRadius: "10px"}}>{pet.description}</p>
                         <h4 className='headers text-center'>Information</h4>
                         <div className='text-center mb-2'>
-                            <p className='headers fs-5'>Owner: {pet.ownerName}</p>
-                            <p className='headers fs-5'>Kind: {pet.type}</p>
-                            <p className='headers fs-5'>Age: {calculateAge(pet.birthDate)} years</p>
+                            <p className='headers fs-5'>Owner: <b>{pet.ownerName}</b></p>
+                            <p className='headers fs-5'>Kind: <b>{pet.type}</b></p>
+                            <p className='headers fs-5'>Age: <b>{calculateAge(pet.birthDate)} years</b></p>
                         </div>
-                        <p className='headers fs-5'>Loves: {pet.loves}</p>
-                        <p className='headers fs-5'>Hates: {pet.hates}</p>
+                        <p className='headers fs-5'>Loves: {pet.loves.map((p) => (
+                            <span key={p} className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
+                        ))}</p>
+                        <p className='headers fs-5'>Hates: {pet.hates.map((p) => (
+                            <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
+                        ))}</p>
                     </div>
                 </Col>
             </Row>

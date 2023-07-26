@@ -109,7 +109,7 @@ const ImageForm = () => {
                 <Form.Label>Description</Form.Label>
               </Form.Floating>
             </Form.Group>
-            <Button className='mt-2 justify-content-center' style={{ backgroundColor: "#012840", color: "orange" }} type='submit'>Submit</Button>
+            <Button className='custom-button mt-2 justify-content-center' type='submit'>Submit</Button>
           </Form>
         </Col>
       </Row>

@@ -27,7 +27,7 @@ const NavbarComponent = () => {
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item className='text-center'>
-                <Link to="/option2" className="text-decoration-none text-dark fs-5">
+                <Link to="/pet-edit" className="text-decoration-none text-dark fs-5">
                   Edit Pet
                 </Link>
               </NavDropdown.Item>

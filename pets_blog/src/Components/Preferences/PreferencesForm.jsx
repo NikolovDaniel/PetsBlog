@@ -9,16 +9,28 @@ const PreferencesForm = () => {
     const [hates, setHates] = useState([{ name: '' }]);
     const [loves, setLoves] = useState([{ name: '' }]);
     const [apiKey, setApiKey] = useState('');
+    const [ownerId, setOwnerId] = useState('');
+    const [petId, setPetId] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [errorMessages, setErrorMessages] = useState([]);
 
-    const handleAddHate = () => {
-        setHates([...hates, { name: '' }]);
-    };
+    const handleAddField = (type) => {
+        if (type === 'hates' && hates.length >= 10) {
+            alert('Maximum limit of 10 hates fields reached.');
+            return;
+        }
 
-    const handleAddLove = () => {
-        setLoves([...loves, { name: '' }]);
+        if (type === 'loves' && loves.length >= 10) {
+            alert('Maximum limit of 10 loves fields reached.');
+            return;
+        }
+
+        if (type === 'hates') {
+            setHates([...hates, { Name: '' }]);
+        } else if (type === 'loves') {
+            setLoves([...loves, { Name: '' }]);
+        }
     };
 
     const handleHateChange = (index, value) => {
@@ -37,28 +49,38 @@ const PreferencesForm = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        const data = formType === 'hates' ? hates : loves;
-
-        formData.append("Preferences", JSON.stringify(data));
+        const data = formType === 'hates' ? hates.map((hate) => hate.name) : loves.map((love) => love.name);
+        const type = formType === 'hates' ? 'Hates' : 'Loves';
+        formData.append("JsonPreferences", JSON.stringify(data));
+        formData.append("Type", type);
         formData.append('ApiKey', apiKey);
-        console.log(JSON.stringify(data));
+        formData.append('OwnerId', ownerId);
+        formData.append('PetId', petId);
 
         try {
-            await axios.post(`https://localhost:7026/api/Preferences`, formData);
+            await axios.post(`https://localhost:7026/api/Preferences/${apiKey}`, formData);
+
             setShowModal(true);
         } catch (error) {
             console.error('Error submitting the form:', error);
-
-            if (error.response && error.response.data && error.response.data.errors) {
+            if (error.response.status === 400) {
+                console.log(error.response.data.Error);
+                setErrorMessages(error.response.data.Error);
+            }
+            else if (error.response && error.response.status === 400) {
                 const errorData = error.response.data;
-                const errorMessages = [];
 
-                for (const [key, value] of Object.entries(errorData.errors)) {
-                    const errorMessage = `${key}: ${value}`;
-                    errorMessages.push(errorMessage);
+                if (errorData.errors) {
+                    // Handle ModelState errors
+                    const errorMessages = Object.entries(errorData.errors).map(([key, value]) => `${key}: ${value}`);
+                    setErrorMessages(errorMessages);
+                } else if (errorData.Errors) {
+                    // Handle ProblemDetails errors
+                    const errorMessages = errorData.Errors;
+                    setErrorMessages(errorMessages);
+                } else {
+                    setErrorMessages(['An error occurred while submitting the form. Please try again later.']);
                 }
-
-                setErrorMessages(errorMessages);
             } else {
                 setErrorMessages(['An error occurred while submitting the form. Please try again later.']);
             }
@@ -76,15 +98,52 @@ const PreferencesForm = () => {
         setShowModal(false);
     };
 
+    sessionStorage.setItem('ownerId', 'daniel')
+
     return (
         <Container fluid>
-            <Row className='pet-form mt-5 bg-dark'>
+            <Row>
+                <p className='headers text-center fs-5 mt-5'>* Every Pet can have 10 Loves and 10 Hates preferences.</p>
+                <Form.Label className='headers text-center fs-3'>Request Information:</Form.Label>
+                <Col xs={12} md={4}>
+                    <Form.Group className='mt-1'>
+                        <Form.Control
+                            value={ownerId}
+                            onChange={(e) => setOwnerId(e.target.value)}
+                            type='text'
+                            placeholder={'Owner Id'}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col xs={12} md={4}>
+                    <Form.Group className='mt-1'>
+                        <Form.Control
+                            value={petId}
+                            onChange={(e) => setPetId(e.target.value)}
+                            type='text'
+                            placeholder={'Pet Id'}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col xs={12} md={4}>
+                    <Form.Group className='mt-1'>
+                        <Form.Control
+                            value={apiKey}
+                            onChange={(e) => setApiKey(e.target.value)}
+                            type='text'
+                            placeholder={'API Key'}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row className='pet-form mt-3 bg-dark'>
                 <Col xs={12} md={6}>
                     <Form className='d-flex flex-column'>
                         <Form.Label className='headers text-center fs-3 mt-5'>Your pet hates:</Form.Label>
                         {hates.map((hate, index) => (
                             <Form.Group className='mt-1' controlId={`hate-${index}`} key={index}>
                                 <Form.Control
+                                    maxLength={20}
                                     type='text'
                                     value={hate.name}
                                     onChange={(e) => handleHateChange(index, e.target.value)}
@@ -93,14 +152,13 @@ const PreferencesForm = () => {
                             </Form.Group>
                         ))}
                         <Button
-                            style={{ backgroundColor: 'orange', color: '#012840' }}
-                            className='button-hover mt-2 justify-content-center'
-                            onClick={handleAddHate}>
+                            className='custom-button mt-2 justify-content-center'
+                            type='button'
+                            onClick={() => handleAddField('hates')}>
                             Add Hate Field
                         </Button>
                         <Button
-                            className='mt-2 mb-2 justify-content-center'
-                            style={{ backgroundColor: '#012840', color: 'orange' }}
+                            className='custom-button fs-5 mt-2 mb-2 justify-content-center'
                             type='submit'
                             onClick={(e) => handleSubmit(e, 'hates')}
                         >
@@ -114,6 +172,7 @@ const PreferencesForm = () => {
                         {loves.map((love, index) => (
                             <Form.Group className='mt-1' controlId={`love-${index}`} key={index}>
                                 <Form.Control
+                                    maxLength={20}
                                     type='text'
                                     value={love.name}
                                     onChange={(e) => handleLoveChange(index, e.target.value)}
@@ -122,14 +181,13 @@ const PreferencesForm = () => {
                             </Form.Group>
                         ))}
                         <Button
-                            style={{ backgroundColor: 'orange', color: '#012840' }}
-                            className='button-hover mt-2 justify-content-center'
-                            onClick={handleAddLove}>
+                            className='custom-button mt-2 justify-content-center'
+                            type='button'
+                            onClick={() => handleAddField('loves')}>
                             Add Love Field
                         </Button>
                         <Button
-                            className='mt-2 mb-2 justify-content-center'
-                            style={{ backgroundColor: '#012840', color: 'orange' }}
+                            className='custom-button fs-5 mt-2 mb-2 justify-content-center'
                             type='submit'
                             onClick={(e) => handleSubmit(e, 'loves')}
                         >

@@ -1,9 +1,15 @@
+/* #root {
+  background-image: url("https://img.freepik.com/premium-vector/pet-paws-seamless-pattern-white-background_505573-120.jpg?w=2000");
+  background-repeat: no-repeat;  
+  background-size: cover;
+} */
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .mb-4 {
-    margin-bottom: 1rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}

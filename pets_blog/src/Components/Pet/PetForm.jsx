@@ -59,7 +59,6 @@ const PetForm = () => {
     formData.append('ImageFile', petImage);
     formData.append('Description', petDescription);
     formData.append('Id', generatedPetId)
-    console.log(generatedPetId);
     try {
       await axios.post(`https://localhost:7026/api/Pets/${apiKey}`, formData);
       setShowModal(true);
@@ -82,12 +81,11 @@ const PetForm = () => {
           const errorMessage = `${key}: ${value}`;
           errorMessages.push(errorMessage);
         }
-        
+
         setErrorMessages(errorMessages);
       } else {
         setErrorMessages(['An error occurred while submitting the form. Please try again later.']);
       }
-      console.log(error.response.data)
       setShowErrorModal(true);
     }
   };
@@ -113,14 +111,14 @@ const PetForm = () => {
       <Row className='mt-4'>
         <Col className='text-center'>
           <h4 className='headers'>GUID's</h4>
-          <p className='fs-5'>Owner Id: <b>{generatedGuid}</b></p>
-          <p className='fs-5'>Pet Id: <b>{generatedPetId}</b></p>
-          <p className='fs-5'>* Please save your Owner Id and Pet Id, as you will need it in order to manipulate your Pet Data.</p>
+          <p className='fs-5'>Owner ID: <b>{generatedGuid}</b></p>
+          <p className='fs-5'>Pet ID: <b>{generatedPetId}</b></p>
+          <p className='fs-5'>* Please save your Owner ID and Pet ID, as you will need it in order to manipulate your Pet Data.</p>
           <p className='fs-5'>* In order to add your favorite Pet, you need to include an API key.</p>
-        <div>
-        <Button style={{ backgroundColor: "#012840", color: "orange" }} onClick={copyToClipboard}>Copy Owner Id to Clipboard</Button>
-          <Button style={{ backgroundColor: "#012840", color: "orange" }} onClick={copyPetIdToClipboard}>Copy Pet Id to Clipboard</Button>
-        </div>
+          <div>
+            <Button className='custom-button fs-5' onClick={copyToClipboard}>Copy Owner ID to Clipboard</Button>
+            <Button className='custom-button fs-5 ms-0 ms-lg-1 mt-1 mt-lg-0' onClick={copyPetIdToClipboard}>Copy Pet ID to Clipboard</Button>
+          </div>
         </Col>
       </Row>
       <Row className='pet-form d-flex flex-column justify-content-center align-items-center mt-5 bg-dark'>
@@ -183,7 +181,7 @@ const PetForm = () => {
                 <Form.Label>Description</Form.Label>
               </Form.Floating>
             </Form.Group>
-            <Button className='mt-2 justify-content-center' style={{ backgroundColor: "#012840", color: "orange" }} type='submit'>Submit</Button>
+            <Button className='custom-button fs-5 mt-2 mb-2 justify-content-center' type='submit'>Submit</Button>
           </Form>
           {successMessage && (
             <div className='text-success mt-3'>{successMessage}</div>
@@ -193,7 +191,7 @@ const PetForm = () => {
           )}
         </Col>
       </Row>
-      <SuccessModal show={showModal} onClose={handleCloseModal} message={'You have succesfully created your Pet.'}/>
+      <SuccessModal show={showModal} onClose={handleCloseModal} message={'You have succesfully created your Pet.'} />
       <ErrorModal show={showErrorModal} onClose={handleCloseErrorModal} errorMessages={errorMessages} />
     </Container>
   );
