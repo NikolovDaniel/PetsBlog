@@ -107,32 +107,36 @@ const PreferencesForm = () => {
                 <Form.Label className='headers text-center fs-3'>Request Information:</Form.Label>
                 <Col xs={12} md={4}>
                     <Form.Group className='mt-1'>
-                        <Form.Control
-                            value={ownerId}
-                            onChange={(e) => setOwnerId(e.target.value)}
-                            type='text'
-                            placeholder={'Owner Id'}
-                        />
+                        <Form.Floating>
+                            <Form.Control
+                                value={ownerId}
+                                onChange={(e) => setOwnerId(e.target.value)}
+                                type='text'
+                            />
+                            <Form.Label>Owner ID</Form.Label>
+                        </Form.Floating>
                     </Form.Group>
                 </Col>
                 <Col xs={12} md={4}>
                     <Form.Group className='mt-1'>
+                        <Form.Floating>
                         <Form.Control
                             value={petId}
                             onChange={(e) => setPetId(e.target.value)}
-                            type='text'
-                            placeholder={'Pet Id'}
-                        />
+                            type='text' />
+                            <Form.Label>Pet ID</Form.Label>
+                        </Form.Floating>
                     </Form.Group>
                 </Col>
                 <Col xs={12} md={4}>
                     <Form.Group className='mt-1'>
+                        <Form.Floating>
                         <Form.Control
                             value={apiKey}
                             onChange={(e) => setApiKey(e.target.value)}
-                            type='text'
-                            placeholder={'API Key'}
-                        />
+                            type='text' />
+                            <Form.Label>API Key</Form.Label>
+                        </Form.Floating>
                     </Form.Group>
                 </Col>
             </Row>
