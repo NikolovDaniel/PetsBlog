@@ -40,12 +40,11 @@ const ImageForm = () => {
           const errorMessage = `${key}: ${value}`;
           errorMessages.push(errorMessage);
         }
-        
+
         setErrorMessages(errorMessages);
       } else {
         setErrorMessages(['An error occurred while submitting the form. Please try again later.']);
       }
-      console.log(error.response.data)
       setShowErrorModal(true);
     }
   };
@@ -61,7 +60,34 @@ const ImageForm = () => {
 
   return (
     <Container fluid>
-      <Row className='pet-form d-flex flex-column justify-content-center align-items-center mt-5 bg-dark'>
+      <Row>
+        <Form.Label className='headers text-center fs-3 mt-5'>Request Information:</Form.Label>
+        <Col xs={12} md={4}>
+          <Form.Group controlId='ownerId'>
+            <Form.Floating className='mt-2'>
+              <Form.Control type='text' value={ownerId} onChange={(e) => setOwnerId(e.target.value)} />
+              <Form.Label>Owner Id</Form.Label>
+            </Form.Floating>
+          </Form.Group>
+        </Col>
+        <Col xs={12} md={4}>
+          <Form.Group controlId='petId'>
+            <Form.Floating className='mt-2'>
+              <Form.Control type='text' value={petId} onChange={(e) => setPetId(e.target.value)} />
+              <Form.Label>Pet Id</Form.Label>
+            </Form.Floating>
+          </Form.Group>
+        </Col>
+        <Col xs={12} md={4}>
+          <Form.Group controlId='apiKey'>
+            <Form.Floating className='mt-2'>
+              <Form.Control type='text' value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
+              <Form.Label>API Key</Form.Label>
+            </Form.Floating>
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row className='pet-form d-flex flex-column justify-content-center align-items-center mt-3 bg-dark'>
         <Col xs={12} md={6}>
           <Form className='d-flex flex-column mt-3' onSubmit={handleSubmit}>
             {petImage && (
@@ -80,24 +106,6 @@ const ImageForm = () => {
                 <Form.Label>Category</Form.Label>
               </Form.Floating>
             </Form.Group>
-            <Form.Group controlId='ownerId'>
-              <Form.Floating className='mt-2'>
-                <Form.Control type='text' value={ownerId} onChange={(e) => setOwnerId(e.target.value)} />
-                <Form.Label>Owner Id</Form.Label>
-              </Form.Floating>
-            </Form.Group>
-            <Form.Group controlId='petId'>
-              <Form.Floating className='mt-2'>
-                <Form.Control type='text' value={petId} onChange={(e) => setPetId(e.target.value)} />
-                <Form.Label>Pet Id</Form.Label>
-              </Form.Floating>
-            </Form.Group>
-            <Form.Group controlId='apiKey'>
-              <Form.Floating className='mt-2'>
-                <Form.Control type='text' value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
-                <Form.Label>API Key</Form.Label>
-              </Form.Floating>
-            </Form.Group>
             <Form.Group controlId='description' className='mb-3 mt-2'>
               <Form.Floating>
                 <Form.Control
@@ -113,7 +121,7 @@ const ImageForm = () => {
           </Form>
         </Col>
       </Row>
-      <SuccessModal show={showModal} onClose={handleCloseModal} message={'You have successfully added an Image to your Pet.'}/>
+      <SuccessModal show={showModal} onClose={handleCloseModal} message={'You have successfully added an Image to your Pet.'} />
       <ErrorModal show={showErrorModal} onClose={handleCloseErrorModal} errorMessages={errorMessages} />
     </Container>
   );
