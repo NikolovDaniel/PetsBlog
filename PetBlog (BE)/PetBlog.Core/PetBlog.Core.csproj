@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Contracts\" />
+    <None Remove="Models\" />
+    <None Remove="Services\" />
+    <None Remove="Models\Pet\" />
+    <None Remove="Models\AutoMapper\" />
+    <None Remove="Models\Image\" />
+    <None Remove="Models\Preferences\" />
+    <None Remove="Models\Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\Pet\" />
+    <Folder Include="Models\AutoMapper\" />
+    <Folder Include="Models\Image\" />
+    <Folder Include="Models\Preferences\" />
+    <Folder Include="Models\Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetBlog.Infrastructure\PetBlog.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+  </ItemGroup>
+</Project>
