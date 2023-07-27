@@ -10,6 +10,7 @@ import ImageForm from './Components/Image/ImageForm';
 import PreferencesForm from './Components/Preferences/PreferencesForm';
 import Footer from './Components/Footer/FooterComp';
 import PetEdit from './Components/Pet/PetEdit';
+import DownloadPetIds from './Components/Pet/DownloadPetIds';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/image-add" element={<ImageForm />} />
           <Route path="/preferences-add" element={<PreferencesForm />} />
           <Route path="/pet-edit" element={<PetEdit />} />
+          <Route path="/download-pet-ids" element={<DownloadPetIds />} />
         </Routes>
         <Footer />
     </Router>

@@ -18,8 +18,6 @@ const PetForm = () => {
   const [apiKey, setApiKey] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
 
   const generateGuid = async () => {
@@ -60,7 +58,7 @@ const PetForm = () => {
     formData.append('Description', petDescription);
     formData.append('Id', generatedPetId)
     try {
-      await axios.post(`https://localhost:7026/api/Pets/${apiKey}`, formData);
+      await axios.post(`http://kolombus-001-site1.htempurl.com/api/Pets/${apiKey}`, formData);
       setShowModal(true);
       setPetName('');
       setPetBirthDate('');
@@ -183,12 +181,6 @@ const PetForm = () => {
             </Form.Group>
             <Button className='custom-button fs-5 mt-2 mb-2 justify-content-center' type='submit'>Submit</Button>
           </Form>
-          {successMessage && (
-            <div className='text-success mt-3'>{successMessage}</div>
-          )}
-          {errorMessage && (
-            <div className='text-danger mt-3'>{errorMessage}</div>
-          )}
         </Col>
       </Row>
       <SuccessModal show={showModal} onClose={handleCloseModal} message={'You have succesfully created your Pet.'} />

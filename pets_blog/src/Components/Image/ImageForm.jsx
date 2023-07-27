@@ -26,7 +26,7 @@ const ImageForm = () => {
     formData.append('ImageFile', petImage);
     formData.append('Category', category);
     try {
-      await axios.post(`https://localhost:7026/api/Images/${apiKey}`, formData);
+      await axios.post(`http://kolombus-001-site1.htempurl.com/api/Images/${apiKey}`, formData);
       setShowModal(true);
       setPetImage(null);
     } catch (error) {

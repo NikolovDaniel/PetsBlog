@@ -25,7 +25,7 @@ const PetById = () => {
 
     useEffect(() => {
         axios
-            .get(`https://localhost:7026/api/Pets/${id}`)
+            .get(`http://kolombus-001-site1.htempurl.com/api/Pets/${id}`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);
@@ -37,11 +37,11 @@ const PetById = () => {
     }, [id]);
 
     if (loading) {
-        return <div className='text-center fs-3'>Loading...</div>;
+        return <div className='headers text-center fs-3'>Loading...</div>;
     }
 
     if (Object.keys(pet).length === 0) {
-        return <div className='text-center fs-3'>Unable to fetch pet data.</div>;
+        return <div className='headers text-center fs-3'>Unable to fetch pet data.</div>;
     }
 
     const allCategories = ['All', ...new Set(Object.values(pet.images).map((image) => image.category))];
@@ -66,12 +66,12 @@ const PetById = () => {
                             <p className='headers fs-5'>Kind: <b>{pet.type}</b></p>
                             <p className='headers fs-5'>Age: <b>{calculateAge(pet.birthDate)} years</b></p>
                         </div>
-                        <p className='headers fs-5'>Loves: {pet.loves.map((p) => (
-                            <span key={p} className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
-                        ))}</p>
-                        <p className='headers fs-5'>Hates: {pet.hates.map((p) => (
-                            <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "#FE522B", borderRadius: "10px"}}><b>{p}</b></span>
-                        ))}</p>
+                        <p className='headers fs-5'>Loves: {pet.loves ? pet.loves.map((p) => (
+                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
+                        )) :  <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>No Loves</b></span>}</p>
+                        <p className='headers fs-5'>Hates: {pet.hates ? pet.hates.map((p) => (
+                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
+                        )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>No Hates</b></span>}</p>
                     </div>
                 </Col>
             </Row>
@@ -107,7 +107,7 @@ const PetById = () => {
                             </Card>
                         </div>
                     </Col>
-                )) : <div className='text-center fs-3'>No images available!</div>}
+                )) : <div className='headers text-center fs-3'>No images available!</div>}
             </Row>
         </Container>
     );

@@ -41,6 +41,11 @@ const NavbarComponent = () => {
                   Add Pet Preferences
                 </Link>
               </NavDropdown.Item>
+              <NavDropdown.Item className='text-center'>
+                <Link to="/download-pet-ids" className="text-decoration-none text-dark fs-5">
+                  Download your Pet IDs
+                </Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

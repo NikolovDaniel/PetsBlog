@@ -10,12 +10,16 @@ const AllPets = () => {
 
   useEffect(() => {
     axios
-      .get('https://localhost:7026/api/Pets')
+      .get('http://kolombus-001-site1.htempurl.com/api/Pets')
       .then((response) => {
         setPets(response.data);
       })
       .catch((error) => console.error('Error fetching pets:', error));
   }, []);
+
+  if (Object.keys(pets).length === 0) {
+    return <div className='headers text-center fs-3'>No available Pets!</div>;
+  }
 
   const filteredPets = pets.filter((pet) =>
     pet.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,7 +39,7 @@ const AllPets = () => {
           <Col key={pet.id} className="d-flex justify-content-center align-items-center mb-4">
             <PetCard pet={pet} />
           </Col>
-        )) : <div className='w-100 fs-3'>No available pets!</div>}
+        )) : <div className='headers w-100 fs-3'>Loading...</div>}
       </Row>
     </Container>
   );
