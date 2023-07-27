@@ -7,7 +7,6 @@ const RandomPet = () => {
     const [pet, setPet] = useState({});
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
-    const [imageLoadStatus, setImageLoadStatus] = useState({});
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -35,24 +34,6 @@ const RandomPet = () => {
             });
     }, []);
 
-    useEffect(() => {
-        const loadImage = (index) => {
-            const image = new Image();
-            image.onload = () => {
-                setImageLoadStatus(prevState => ({ ...prevState, [index]: true }));
-            };
-            image.src = `data:image/jpeg;base64,${filteredImages[index].image}`;
-        };
-
-        if (pet.images) {
-            pet.images.forEach((_, index) => {
-                if (!imageLoadStatus[index]) {
-                    loadImage(index);
-                }
-            });
-        }
-    }, [pet, imageLoadStatus]);
-    
     if (loading) {
         return <div className='text-center fs-3'>Loading...</div>;
     }
@@ -120,23 +101,7 @@ const RandomPet = () => {
                     <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
                         <div className='pet-picture-wrapper'>
                             <Card>
-                                {imageLoadStatus[index] ? (
-                                    <Card.Img
-                                        className='pet-picture'
-                                        loading='lazy'
-                                        variant="top"
-                                        src={`data:image/jpeg;base64,${img.image}`}
-                                        alt={`Dog ${index + 1}`}
-                                    />
-                                ) : (
-                                    <Card.Img
-                                        className='pet-picture'
-                                        loading='lazy'
-                                        variant="top"
-                                        src='https://via.placeholder.com/400'
-                                    />
-                                )}
-                                {/* <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} /> */}
+                                <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
                             </Card>
                         </div>
                     </Col>
