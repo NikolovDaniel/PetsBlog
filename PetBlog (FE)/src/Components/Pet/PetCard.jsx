@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import '../CSS/PetCard.css';
+import { Link } from 'react-router-dom';
 
 const PetCard = ({ pet }) => {
   return (
@@ -16,8 +17,7 @@ const PetCard = ({ pet }) => {
           <h3 className='headers text-center fs-3'>{pet.name}</h3>
           </Card.Title>
         <Button 
-        className='custom-button btn btn-md fs-5 border-0' 
-        href={`/pet/${pet.id}`}>More</Button>
+        className='custom-button btn btn-md fs-5 border-0'><Link to={`/pet/${pet.id}`} className="text-decoration-none text-dark fs-5">More</Link></Button>
       </Card.Body>
     </Card >
   );
