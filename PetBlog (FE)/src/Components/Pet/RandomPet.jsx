@@ -65,13 +65,11 @@ const RandomPet = () => {
                             <p className='headers fs-5'>Age: <b>{calculateAge(pet.birthDate)} years</b></p>
                         </div>
                         <p className='headers fs-5'>Loves: {pet.loves ? pet.loves.map((p) => (
-                                <span key={p} className='headers d-inline-block ms-2 mt-1 pb-1 pt-1 ps-1 pe-1 fs-5' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
-                            )) : <span className='headers ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Loves</b></span>}</p>
-                        <div>
-                            <p className='headers fs-5'>Hates: {pet.hates ? pet.hates.map((p) => (
-                                <span key={p} className='headers d-inline-block ms-2 mt-1 pb-1 pt-1 ps-1 pe-1 fs-5' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
-                            )) : <span className='headers ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Hates</b></span>}</p>
-                        </div>
+                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                        )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Loves</b></span>}</p>
+                        <p className='headers fs-5'>Hates: {pet.hates ? pet.hates.map((p) => (
+                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                        )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Hates</b></span>}</p>
                     </div>
                 </Col>
             </Row>
@@ -103,7 +101,10 @@ const RandomPet = () => {
                     <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
                         <div className='pet-picture-wrapper'>
                             <Card>
-                                <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                {imageLoading
+                                    ? <Card.img className='pet-picture' variant='top' src="https://via.placeholder.com/400" />
+                                    : <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                }
                             </Card>
                         </div>
                     </Col>

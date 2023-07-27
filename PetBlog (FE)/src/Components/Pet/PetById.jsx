@@ -9,6 +9,7 @@ const PetById = () => {
     const [pet, setPet] = useState({});
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
+    const [imageLoading, setImageLoading] = useState(true);
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -59,7 +60,7 @@ const PetById = () => {
                 <Col xs={12} lg={6} className='d-flex flex-column justify-content-center align-items-center mt-3'>
                     <div>
                         <h1 className='headers text-center'>{pet.name}</h1>
-                        <p className='lead fs-2 text-center ps-2 pe-2 pt-2 pb-2' style={{ color: "#012840", backgroundColor: "orange", borderRadius: "10px"}}>{pet.description}</p>
+                        <p className='lead fs-2 text-center ps-2 pe-2 pt-2 pb-2' style={{ color: "#012840", backgroundColor: "orange", borderRadius: "10px" }}>{pet.description}</p>
                         <h4 className='headers fs-3 mt-4 text-center'>Information</h4>
                         <div className='text-center mb-2'>
                             <p className='headers fs-5'>Owner: <b>{pet.ownerName}</b></p>
@@ -67,11 +68,11 @@ const PetById = () => {
                             <p className='headers fs-5'>Age: <b>{calculateAge(pet.birthDate)} years</b></p>
                         </div>
                         <p className='headers fs-5'>Loves: {pet.loves ? pet.loves.map((p) => (
-                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
-                        )) :  <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>No Loves</b></span>}</p>
+                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                        )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Loves</b></span>}</p>
                         <p className='headers fs-5'>Hates: {pet.hates ? pet.hates.map((p) => (
-                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>{p}</b></span>
-                        )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{backgroundColor: "orange", borderRadius: "10px"}}><b>No Hates</b></span>}</p>
+                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                        )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Hates</b></span>}</p>
                     </div>
                 </Col>
             </Row>
@@ -103,7 +104,10 @@ const PetById = () => {
                     <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
                         <div className='pet-picture-wrapper'>
                             <Card>
-                                <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                {imageLoading
+                                    ? <Card.img className='pet-picture' variant='top' src="https://via.placeholder.com/400" />
+                                    : <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                }
                             </Card>
                         </div>
                     </Col>
