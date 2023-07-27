@@ -223,7 +223,6 @@ const PetEdit = () => {
                         <p className='fs-5'>You have successfully edited your Pet.</p>
                         <Link to={`/pet/${petIdField}`} className='custom-button btn fs-5 border-0'>View your Pet</Link>
                     </div>
-
                 </React.Fragment>} />
             <ErrorModal show={showErrorModal} onClose={handleCloseErrorModal} errorMessages={errorMessages} />
         </Container >
