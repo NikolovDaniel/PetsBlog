@@ -29,7 +29,7 @@ const PetEdit = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.get(`http://kolombus-001-site1.htempurl.com/api/Pets/Edit?id=${petIdField}&ownerId=${ownerIdField}`);
+            const response = await axios.get(`https://kolombus-001-site1.htempurl.com/api/Pets/Edit?id=${petIdField}&ownerId=${ownerIdField}`);
             const petDetails = response.data;
             setPetData(petDetails);
         } catch (error) {
@@ -70,7 +70,7 @@ const PetEdit = () => {
         formData.append('BirthDate', petData.birthDate);
         formData.append('image', petImage)
         try {
-            await axios.put(`http://kolombus-001-site1.htempurl.com/api/Pets/${apiKeyField}?id=${petIdField}&ownerId=${ownerIdField}`, formData);
+            await axios.put(`https://kolombus-001-site1.htempurl.com/api/Pets/${apiKeyField}?id=${petIdField}&ownerId=${ownerIdField}`, formData);
             setShowModal(true);
             setPetData({});
         } catch (error) {

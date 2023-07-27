@@ -25,7 +25,7 @@ const PetById = () => {
 
     useEffect(() => {
         axios
-            .get(`http://kolombus-001-site1.htempurl.com/api/Pets/${id}`)
+            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/${id}`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);

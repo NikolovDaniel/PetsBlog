@@ -58,7 +58,7 @@ const PetForm = () => {
     formData.append('Description', petDescription);
     formData.append('Id', generatedPetId)
     try {
-      await axios.post(`http://kolombus-001-site1.htempurl.com/api/Pets/${apiKey}`, formData);
+      await axios.post(`https://kolombus-001-site1.htempurl.com/api/Pets/${apiKey}`, formData);
       setShowModal(true);
       setPetName('');
       setPetBirthDate('');

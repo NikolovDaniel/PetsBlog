@@ -10,7 +10,7 @@ const AllPets = () => {
 
   useEffect(() => {
     axios
-      .get('http://kolombus-001-site1.htempurl.com/api/Pets')
+      .get('https://kolombus-001-site1.htempurl.com/api/Pets')
       .then((response) => {
         setPets(response.data);
       })

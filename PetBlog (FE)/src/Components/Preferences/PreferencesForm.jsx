@@ -58,7 +58,7 @@ const PreferencesForm = () => {
         formData.append('PetId', petId);
 
         try {
-            await axios.post(`http://kolombus-001-site1.htempurl.com/api/Preferences/${apiKey}`, formData);
+            await axios.post(`https://kolombus-001-site1.htempurl.com/api/Preferences/${apiKey}`, formData);
 
             setShowModal(true);
         } catch (error) {

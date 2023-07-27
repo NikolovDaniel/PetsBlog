@@ -23,7 +23,7 @@ const RandomPet = () => {
 
     useEffect(() => {
         axios
-            .get(`http://kolombus-001-site1.htempurl.com/api/Pets/Random`)
+            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/Random`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);

@@ -15,7 +15,7 @@ const DownloadPetIds = () => {
                 return;
             }
 
-            const response = await axios.get(`http://kolombus-001-site1.htempurl.com/api/Pets/Download?ownerId=${ownerIdField}`, {
+            const response = await axios.get(`https://kolombus-001-site1.htempurl.com/api/Pets/Download?ownerId=${ownerIdField}`, {
                 responseType: 'blob',
             });
 
