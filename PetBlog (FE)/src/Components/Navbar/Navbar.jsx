@@ -8,7 +8,7 @@ const NavbarComponent = () => {
     <Navbar bg="light" expand="lg">
       <Container>
 
-        <Navbar.Brand href="/PetsBlog">
+        <Navbar.Brand>
           <img
             height={"30"}
             src="https://mentormate.atlassian.net/s/-ia3qmx/b/9/c8bcc8e1a06db28e2046b9cbcf9bf59a/_/jira-logo-scaled.png" />
