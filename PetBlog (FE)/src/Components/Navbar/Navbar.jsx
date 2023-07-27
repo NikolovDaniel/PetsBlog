@@ -18,9 +18,9 @@ const NavbarComponent = () => {
 
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ml-auto fs-3 text-center">
-            <Nav.Link className='navlink'><Link to="/" className='text-decoration-none text-white'>All Pets</Link></Nav.Link>
-            <Nav.Link className='navlink'><Link to="/random-pet" className='text-decoration-none text-white'>Random Pet</Link></Nav.Link>
-            <NavDropdown title="Pet Panel" id="pet-panel-dropdown">
+            <Nav.Link className='navlink'><Link to="/" className='headers text-decoration-none text-white'>All Pets</Link></Nav.Link>
+            <Nav.Link className='navlink ms-md-2'><Link to="/random-pet" className='headers text-decoration-none text-white'>Random Pet</Link></Nav.Link>
+            <NavDropdown className='ms-md-2' title="Pet Panel" id="pet-panel-dropdown">
               <NavDropdown.Item className='text-center'>
                 <Link to="/pet-add" className="text-decoration-none text-dark fs-5">
                   Add Pet
@@ -47,6 +47,7 @@ const NavbarComponent = () => {
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link className='navlink ms-md-2'><Link to="/instructions" className='headers text-decoration-none text-white'>Instructions</Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

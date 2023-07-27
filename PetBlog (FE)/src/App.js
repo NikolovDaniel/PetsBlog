@@ -11,6 +11,7 @@ import PreferencesForm from './Components/Preferences/PreferencesForm';
 import Footer from './Components/Footer/FooterComp';
 import PetEdit from './Components/Pet/PetEdit';
 import DownloadPetIds from './Components/Pet/DownloadPetIds';
+import Instructions from './Components/Navbar/Instructions';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/preferences-add" element={<PreferencesForm />} />
           <Route path="/pet-edit" element={<PetEdit />} />
           <Route path="/download-pet-ids" element={<DownloadPetIds />} />
+          <Route path="/instructions" element={<Instructions />} />
         </Routes>
         <Footer />
     </Router>
