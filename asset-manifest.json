@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/PetsBlog/static/css/main.7c2e9c00.css",
-    "main.js": "/PetsBlog/static/js/main.bde27012.js",
+    "main.js": "/PetsBlog/static/js/main.9337a95b.js",
     "static/js/787.e0b435a2.chunk.js": "/PetsBlog/static/js/787.e0b435a2.chunk.js",
     "index.html": "/PetsBlog/index.html",
     "main.7c2e9c00.css.map": "/PetsBlog/static/css/main.7c2e9c00.css.map",
-    "main.bde27012.js.map": "/PetsBlog/static/js/main.bde27012.js.map",
+    "main.9337a95b.js.map": "/PetsBlog/static/js/main.9337a95b.js.map",
     "787.e0b435a2.chunk.js.map": "/PetsBlog/static/js/787.e0b435a2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7c2e9c00.css",
-    "static/js/main.bde27012.js"
+    "static/js/main.9337a95b.js"
   ]
 }
