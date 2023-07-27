@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import '../CSS/PetForm.css';
 import SuccessModal from '../SuccessModal';
 import ErrorModal from '../ErrorModal';
+import { Link } from 'react-router-dom';
 
 const PetEdit = () => {
     const [ownerIdField, setOwnerIdField] = useState('');
@@ -220,9 +221,7 @@ const PetEdit = () => {
                 <React.Fragment>
                     <div className='d-flex flex-column justify-content-center align-items-center'>
                         <p className='fs-5'>You have successfully edited your Pet.</p>
-                        <a href={`/pet/${petIdField}`} className="custom-button btn">
-                            View your Pet
-                        </a>
+                        <Link to={`/pet/${petIdField}`} className='custom-button btn fs-5 border-0'>View your Pet</Link>
                     </div>
 
                 </React.Fragment>} />
