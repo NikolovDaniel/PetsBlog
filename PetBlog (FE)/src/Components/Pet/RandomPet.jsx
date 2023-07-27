@@ -7,6 +7,7 @@ const RandomPet = () => {
     const [pet, setPet] = useState({});
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
+    const [imageLoading, setImageLoading] = useState(true);
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -100,10 +101,10 @@ const RandomPet = () => {
                 {filteredImages ? filteredImages.map((img, index) => (
                     <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
                         <div className='pet-picture-wrapper'>
-                            <Card>
+                        <Card>
                                 {imageLoading
                                     ? <Card.img className='pet-picture' variant='top' src="https://via.placeholder.com/400" />
-                                    : <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                    : <Card.Img onLoad={() => setImageLoading(false)} className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
                                 }
                             </Card>
                         </div>

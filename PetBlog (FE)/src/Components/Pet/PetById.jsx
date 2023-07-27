@@ -106,7 +106,7 @@ const PetById = () => {
                             <Card>
                                 {imageLoading
                                     ? <Card.img className='pet-picture' variant='top' src="https://via.placeholder.com/400" />
-                                    : <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                    : <Card.Img onLoad={() => setImageLoading(false)} className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
                                 }
                             </Card>
                         </div>
