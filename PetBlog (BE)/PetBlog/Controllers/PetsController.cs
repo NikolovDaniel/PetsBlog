@@ -145,6 +145,22 @@ namespace PetBlog.Controllers
                 return BadRequest(string.Format($"Something went wrong...\nError: {ex.Message}"));
             }
         }
+
+        [HttpGet("Download")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult Download([FromQuery] Guid ownerId)
+        {
+            if (ownerId == Guid.Empty)
+            {
+                return BadRequest("Owner ID is required.");
+            }
+
+            var textContent = this._petService.GetAllByOwnerId(ownerId);
+
+            return File(textContent, "text/plain", "OwnerAndPetsIds.txt");
+        }
     }
 }
 

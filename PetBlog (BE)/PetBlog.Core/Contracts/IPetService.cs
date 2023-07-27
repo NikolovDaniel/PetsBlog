@@ -9,6 +9,7 @@ namespace PetBlog.Core.Contracts
     /// </summary>
     public interface IPetService
     {
+        byte[] GetAllByOwnerId(Guid ownerId);
         IEnumerable<PetCardViewModel> GetAll();
         Task AddAsync(PetFormModel model);
         Task<ServiceResult<bool>> UpdateAsync(PetEditFormModel model);
