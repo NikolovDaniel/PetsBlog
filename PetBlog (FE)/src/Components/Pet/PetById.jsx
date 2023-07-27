@@ -9,6 +9,7 @@ const PetById = () => {
     const [pet, setPet] = useState({});
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -23,9 +24,10 @@ const PetById = () => {
         return age;
     };
 
-    useEffect(() => {
+    const fetchPetData = () => {
+        setLoading(true);
         axios
-            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/${id}`)
+            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/Random`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);
@@ -34,7 +36,32 @@ const PetById = () => {
                 console.error('Error fetching pet:', error);
                 setLoading(false);
             });
-    }, [id]);
+    };
+
+    const fetchPetImages = () => {
+        const imagePromises = pet.images.map((image) =>
+            new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = `data:image/jpeg;base64,${image.image}`;
+                img.onload = resolve;
+                img.onerror = reject;
+            })
+        );
+
+        Promise.allSettled(imagePromises)
+            .then(() => setImagesLoaded(true))
+            .catch(() => setImagesLoaded(true));
+    };
+
+    useEffect(() => {
+        fetchPetData();
+    }, []);
+
+    useEffect(() => {
+        if (!loading && Object.keys(pet).length > 0) {
+            fetchPetImages();
+        }
+    }, [pet, loading]);
 
     if (loading) {
         return <div className='headers text-center fs-3'>Loading...</div>;
@@ -67,7 +94,7 @@ const PetById = () => {
                             <p className='headers fs-5'>Age: <b>{calculateAge(pet.birthDate)} years</b></p>
                         </div>
                         <p className='headers fs-5'>Loves: {pet.loves ? pet.loves.map((p) => (
-                            <div className='d-inline-block mt-2'> 
+                            <div className='d-inline-block mt-2'>
                                 <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
                             </div>
                         )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Loves</b></span>}</p>
@@ -102,17 +129,19 @@ const PetById = () => {
                     </Form>
                 </Col>
             </Row>
-            <Row className='gallery d-flex justify-content-center mt-5'>
-                {filteredImages ? filteredImages.map((img, index) => (
-                    <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
-                        <div className='pet-picture-wrapper'>
-                            <Card>
-                                <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
-                            </Card>
-                        </div>
-                    </Col>
-                )) : <div className='headers text-center fs-3'>No images available!</div>}
-            </Row>
+            {imagesLoaded && (
+                <Row className='gallery d-flex justify-content-center mt-5'>
+                    {filteredImages ? filteredImages.map((img, index) => (
+                        <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
+                            <div className='pet-picture-wrapper'>
+                                <Card>
+                                    <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
+                                </Card>
+                            </div>
+                        </Col>
+                    )) : <div className='text-center fs-3'>No images available!</div>}
+                </Row>
+            )}
         </Container>
     );
 }
