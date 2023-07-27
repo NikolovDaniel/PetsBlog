@@ -7,6 +7,7 @@ const RandomPet = () => {
     const [pet, setPet] = useState({});
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -21,7 +22,8 @@ const RandomPet = () => {
         return age;
     };
 
-    useEffect(() => {
+    const fetchPetData = () => {
+        setLoading(true);
         axios
             .get(`https://kolombus-001-site1.htempurl.com/api/Pets/Random`)
             .then((response) => {
@@ -32,7 +34,46 @@ const RandomPet = () => {
                 console.error('Error fetching pet:', error);
                 setLoading(false);
             });
+    };
+
+    const fetchPetImages = () => {
+        const imagePromises = pet.images.map((image) =>
+            new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = `data:image/jpeg;base64,${image.image}`;
+                img.onload = resolve;
+                img.onerror = reject;
+            })
+        );
+
+        Promise.allSettled(imagePromises)
+            .then(() => setImagesLoaded(true))
+            .catch(() => setImagesLoaded(true));
+    };
+
+    useEffect(() => {
+        fetchPetData();
     }, []);
+
+
+    // useEffect(() => {
+    //     axios
+    //         .get(`https://kolombus-001-site1.htempurl.com/api/Pets/Random`)
+    //         .then((response) => {
+    //             setPet(response.data);
+    //             setLoading(false);
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error fetching pet:', error);
+    //             setLoading(false);
+    //         });
+    // }, []);
+
+    useEffect(() => {
+        if (!loading && Object.keys(pet).length > 0) {
+            fetchPetImages();
+        }
+    }, [pet, loading]);
 
     if (loading) {
         return <div className='text-center fs-3'>Loading...</div>;
