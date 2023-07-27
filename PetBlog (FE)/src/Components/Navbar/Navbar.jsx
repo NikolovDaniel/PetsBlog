@@ -22,27 +22,27 @@ const NavbarComponent = () => {
             <Nav.Link className='navlink ms-md-2'><Link to="/random-pet" className='headers text-decoration-none text-white'>Random Pet</Link></Nav.Link>
             <NavDropdown className='ms-md-2' title="Pet Panel" id="pet-panel-dropdown">
               <NavDropdown.Item className='text-center'>
-                <Link to="/pet-add" className="text-decoration-none text-dark fs-5">
+                <Link to="/pet-add" className="text-decoration-none fw-bold fs-5">
                   Add Pet
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item className='text-center'>
-                <Link to="/pet-edit" className="text-decoration-none text-dark fs-5">
+                <Link to="/pet-edit" className="text-decoration-none fw-bold fs-5">
                   Edit Pet
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item className='text-center'>
-                <Link to="/image-add" className="text-decoration-none text-dark fs-5">
+                <Link to="/image-add" className="text-decoration-none fw-bold fs-5">
                   Add Image
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item className='text-center'>
-                <Link to="/preferences-add" className="text-decoration-none text-dark fs-5">
+                <Link to="/preferences-add" className="text-decoration-none fw-bold fs-5">
                   Add Pet Preferences
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item className='text-center'>
-                <Link to="/download-pet-ids" className="text-decoration-none text-dark fs-5">
+                <Link to="/download-pet-ids" className="text-decoration-none fw-bold fs-5">
                   Download your Pet IDs
                 </Link>
               </NavDropdown.Item>
