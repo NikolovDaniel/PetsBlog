@@ -18,6 +18,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<AllPets />} />
+          <Route path="/PetsBlog" element={<AllPets />} />
           <Route path="/pet-panel" element={<PetPanel />} />
           <Route path="/random-pet" element={<PetRandom />} />
           <Route path="/pet/:id" element={<PetById />} />
