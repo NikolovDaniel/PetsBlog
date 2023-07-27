@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Text;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PetBlog.Core.Contracts;
@@ -189,6 +190,36 @@ namespace PetBlog.Core.Services
 
             result.Data = true;
             return result;
+        }
+
+        public byte[] GetAllByOwnerId(Guid ownerId)
+        {
+            Expression<Func<Pet, bool>> expression
+             = p => p.OwnerId == ownerId;
+
+            var pets = this._repository.AllReadonly<Pet>(expression);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Owner ID: {ownerId}");
+
+            if (pets == null || pets.Count() <= 0)
+            {
+                sb.AppendLine($"\nPets: No pets were found with this Owner ID!");
+            }
+            else
+            {
+                sb.AppendLine($"\nPets:");
+
+                foreach (var pet in pets)
+                {
+                    sb.AppendLine($"\n{pet.Name} : ID: {pet.Id}");
+                }
+            }
+
+            byte[] fileContent = Encoding.UTF8.GetBytes(sb.ToString());
+
+            return fileContent;
         }
     }
 }
