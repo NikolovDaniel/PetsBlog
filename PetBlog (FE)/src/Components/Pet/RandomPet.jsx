@@ -65,10 +65,14 @@ const RandomPet = () => {
                             <p className='headers fs-5'>Age: <b>{calculateAge(pet.birthDate)} years</b></p>
                         </div>
                         <p className='headers fs-5'>Loves: {pet.loves ? pet.loves.map((p) => (
-                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                            <div className='d-inline-block mt-2'>
+                                <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                            </div>
                         )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Loves</b></span>}</p>
                         <p className='headers fs-5'>Hates: {pet.hates ? pet.hates.map((p) => (
-                            <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                            <div className='d-inline-block mt-2'>
+                                <span key={p} className='ms-2 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>{p}</b></span>
+                            </div>
                         )) : <span className='ms-1 pb-1 pt-1 ps-1 pe-1' style={{ backgroundColor: "orange", borderRadius: "10px" }}><b>No Hates</b></span>}</p>
                     </div>
                 </Col>
