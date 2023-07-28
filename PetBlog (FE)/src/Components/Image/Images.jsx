@@ -1,7 +1,6 @@
 import { Row, Col, Card, Form } from 'react-bootstrap';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Images from '../Image/Images'
 import "../CSS/PetById.css";
 
 const Images = ({ id }) => {
