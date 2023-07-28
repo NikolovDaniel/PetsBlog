@@ -28,7 +28,8 @@ const PetById = () => {
     const fetchPetData = () => {
         setLoading(true);
         axios
-            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/NoImages/${id}`)
+            // .get(`https://kolombus-001-site1.htempurl.com/api/Pets/NoImages/${id}`)
+            .get(`https://localhost:7026/api/Pets/NoImages/${id}`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);
@@ -39,30 +40,30 @@ const PetById = () => {
             });
     };
 
-    const fetchPetImages = () => {
-        const imagePromises = pet.images.map((image) =>
-            new Promise((resolve, reject) => {
-                const img = new Image();
-                img.src = `data:image/jpeg;base64,${image.image}`;
-                img.onload = resolve;
-                img.onerror = reject;
-            })
-        );
+    // const fetchPetImages = () => {
+    //     const imagePromises = pet.images.map((image) =>
+    //         new Promise((resolve, reject) => {
+    //             const img = new Image();
+    //             img.src = `data:image/jpeg;base64,${image.image}`;
+    //             img.onload = resolve;
+    //             img.onerror = reject;
+    //         })
+    //     );
 
-        Promise.allSettled(imagePromises)
-            .then(() => setImagesLoaded(true))
-            .catch(() => setImagesLoaded(true));
-    };
+    //     Promise.allSettled(imagePromises)
+    //         .then(() => setImagesLoaded(true))
+    //         .catch(() => setImagesLoaded(true));
+    // };
 
     useEffect(() => {
         fetchPetData();
     }, []);
 
-    useEffect(() => {
-        if (!loading && Object.keys(pet).length > 0) {
-            fetchPetImages();
-        }
-    }, [pet, loading]);
+    // useEffect(() => {
+    //     if (!loading && Object.keys(pet).length > 0) {
+    //         fetchPetImages();
+    //     }
+    // }, [pet, loading]);
 
     if (loading) {
         return <div className='headers text-center fs-3'>Loading...</div>;
