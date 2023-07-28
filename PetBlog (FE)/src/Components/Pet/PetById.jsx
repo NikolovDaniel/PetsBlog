@@ -28,8 +28,7 @@ const PetById = () => {
     const fetchPetData = () => {
         setLoading(true);
         axios
-            // .get(`https://kolombus-001-site1.htempurl.com/api/Pets/NoImages/${id}`)
-            .get(`https://localhost:7026/api/Pets/NoImages/${id}`)
+            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/NoImages/${id}`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);
