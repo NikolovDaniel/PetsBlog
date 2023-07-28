@@ -80,9 +80,9 @@ const PetById = () => {
         <Container fluid className='mt-5'>
             <Row className='title-row pt-2 pb-2'>
                 <Col xs={12} lg={6}>
-                    <div className='pet-title-image-preview'>
+                    {/* <div className='pet-title-image-preview'>
                         <Image variant="top" src={pet.images ? `data:image/jpeg;base64,${pet.images[0].image}` : 'https://via.placeholder.com/400'} alt={pet.name}></Image>
-                    </div>
+                    </div> */}
                 </Col>
                 <Col xs={12} lg={6} className='d-flex flex-column justify-content-center align-items-center mt-3'>
                     <div>
