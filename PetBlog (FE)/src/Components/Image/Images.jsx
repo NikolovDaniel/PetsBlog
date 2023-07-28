@@ -27,7 +27,7 @@ const Images = ({ id }) => {
     }, []);
 
     if (loading) {
-        return <div className='headers text-center fs-3'>Loading...</div>;
+        return <div className='headers text-center fs-3'>Images loading...</div>;
     }
 
     const allCategories = ['All', ...new Set(Object.values(images).map((image) => image.category))];
