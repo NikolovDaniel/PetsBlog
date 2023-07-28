@@ -110,6 +110,17 @@ namespace PetBlog.Core.Services
 
             PetViewModel model = _mapper.Map<PetViewModel>(pet);
 
+            Expression<Func<Images, bool>> expression
+                = i => i.PetId == pet.Id && i.Category.ToLower() == "Title".ToLower();
+
+            var images = this._repository.AllReadonly<Images>(expression);
+
+            model.Images = images.Select(img => new ImageViewModel()
+            {
+                Image = Convert.ToBase64String(img.Data),
+                Category = img.Category
+            });
+
             return model;
         }
 
