@@ -79,9 +79,6 @@ const PetById = () => {
     return (
         <Container fluid className='mt-5'>
             <Row className='title-row pt-2 pb-2'>
-                <Col xs={12} lg={6}>
-                   
-                </Col>
                 <Col xs={12} lg={6} className='d-flex flex-column justify-content-center align-items-center mt-3'>
                     <div>
                         <h1 className='headers text-center'>{pet.name}</h1>
@@ -105,29 +102,6 @@ const PetById = () => {
                     </div>
                 </Col>
             </Row>
-            {/* <Row className='d-flex justify-content-center mt-5'>
-                <Col xs={6}>
-                    <h2 className='headers text-center'>Gallery</h2>
-                    <Form className='text-center'>
-                        <Form.Group controlId="categoryDropdown">
-                            <Form.Label className='headers fs-5'>Select Category</Form.Label>
-                            <Form.Control
-                                className='category text-center'
-                                as="select"
-                                style={{ fontSize: "large" }}
-                                value={selectedCategory}
-                                onChange={(e) => setSelectedCategory(e.target.value)}
-                            >
-                                {allCategories.map((category) => (
-                                    <option key={category} value={category}>
-                                        {category}
-                                    </option>
-                                ))}
-                            </Form.Control>
-                        </Form.Group>
-                    </Form>
-                </Col>
-            </Row> */}
             <Images id={id} />
         </Container>
     );
