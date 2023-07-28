@@ -6,9 +6,7 @@ import "../CSS/PetById.css";
 
 const RandomPet = () => {
     const [pet, setPet] = useState({});
-    // const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
-    // const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -37,30 +35,9 @@ const RandomPet = () => {
             });
     };
 
-    // const fetchPetImages = () => {
-    //     const imagePromises = pet.images.map((image) =>
-    //         new Promise((resolve, reject) => {
-    //             const img = new Image();
-    //             img.src = `data:image/jpeg;base64,${image.image}`;
-    //             img.onload = resolve;
-    //             img.onerror = reject;
-    //         })
-    //     );
-
-    //     Promise.allSettled(imagePromises)
-    //         .then(() => setImagesLoaded(true))
-    //         .catch(() => setImagesLoaded(true));
-    // };
-
     useEffect(() => {
         fetchPetData();
     }, []);
-
-    // useEffect(() => {
-    //     if (!loading && Object.keys(pet).length > 0) {
-    //         fetchPetImages();
-    //     }
-    // }, [pet, loading]);
 
     if (loading) {
         return <div className='text-center fs-3'>Loading...</div>;
@@ -70,16 +47,12 @@ const RandomPet = () => {
         return <div className='text-center fs-3'>Unable to fetch pet data.</div>;
     }
 
-    // const allCategories = ['All', ...new Set(Object.values(pet.images).map((image) => image.category))];
-
-    // const filteredImages = selectedCategory === 'All' ? pet.images : pet.images.filter((image) => image.category === selectedCategory);
-
     return (
         <Container fluid className='mt-5'>
             <Row className='title-row pt-2 pb-2'>
                 <Col xs={12} lg={6}>
                     <div className='pet-title-image-preview'>
-                        <Image variant="top" src={pet.images ? `data:image/jpeg;base64,${pet.images[0].image}` : 'https://via.placeholder.com/400'} alt={pet.name}></Image>
+                        <Image variant="top" src={Object.keys(pet.images).length > 0 ? `data:image/jpeg;base64,${pet.images[0].image}` : 'https://via.placeholder.com/400'} alt={pet.name}></Image>
                     </div>
                 </Col>
                 <Col xs={12} lg={6} className='d-flex flex-column justify-content-center align-items-center mt-3'>
