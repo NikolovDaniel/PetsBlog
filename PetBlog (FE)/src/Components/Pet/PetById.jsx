@@ -2,15 +2,15 @@ import { Row, Col, Card, Container, Image, Form } from 'react-bootstrap';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { Images } from '../Image/Images'
+import Images from '../Image/Images'
 import "../CSS/PetById.css";
 
 const PetById = () => {
     const { id } = useParams();
     const [pet, setPet] = useState({});
-    const [selectedCategory, setSelectedCategory] = useState('All');
+    // const [selectedCategory, setSelectedCategory] = useState('All');
     const [loading, setLoading] = useState(true);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
+    // const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const calculateAge = (birthDate) => {
         const today = new Date();
@@ -28,7 +28,7 @@ const PetById = () => {
     const fetchPetData = () => {
         setLoading(true);
         axios
-            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/${id}`)
+            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/NoImages/${id}`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);
@@ -72,9 +72,9 @@ const PetById = () => {
         return <div className='headers text-center fs-3'>Unable to fetch pet data.</div>;
     }
 
-    const allCategories = ['All', ...new Set(Object.values(pet.images).map((image) => image.category))];
+    // const allCategories = ['All', ...new Set(Object.values(pet.images).map((image) => image.category))];
 
-    const filteredImages = selectedCategory === 'All' ? pet.images : pet.images.filter((image) => image.category === selectedCategory);
+    // const filteredImages = selectedCategory === 'All' ? pet.images : pet.images.filter((image) => image.category === selectedCategory);
 
     return (
         <Container fluid className='mt-5'>
@@ -107,7 +107,7 @@ const PetById = () => {
                     </div>
                 </Col>
             </Row>
-            <Row className='d-flex justify-content-center mt-5'>
+            {/* <Row className='d-flex justify-content-center mt-5'>
                 <Col xs={6}>
                     <h2 className='headers text-center'>Gallery</h2>
                     <Form className='text-center'>
@@ -129,10 +129,8 @@ const PetById = () => {
                         </Form.Group>
                     </Form>
                 </Col>
-            </Row>
-            {imagesLoaded && (
-                <Images images={filteredImages} />
-            )}
+            </Row> */}
+            <Images id={id} />
         </Container>
     );
 }
