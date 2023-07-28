@@ -7,15 +7,26 @@ import '../CSS/AllPets.css';
 const AllPets = () => {
   const [pets, setPets] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get('https://kolombus-001-site1.htempurl.com/api/Pets')
       .then((response) => {
         setPets(response.data);
+        setLoading(false);
+
       })
-      .catch((error) => console.error('Error fetching pets:', error));
+      .catch((error) => {
+        console.error('Error fetching pets:', error)
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return <div className='headers text-center fs-3'>Loading...</div>;
+  }
 
   if (Object.keys(pets).length === 0) {
     return <div className='headers text-center fs-3'>No available Pets!</div>;
