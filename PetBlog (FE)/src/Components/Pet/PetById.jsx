@@ -2,6 +2,7 @@ import { Row, Col, Card, Container, Image, Form } from 'react-bootstrap';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import { Images } from '../Image/Images'
 import "../CSS/PetById.css";
 
 const PetById = () => {
@@ -27,7 +28,7 @@ const PetById = () => {
     const fetchPetData = () => {
         setLoading(true);
         axios
-            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/Random`)
+            .get(`https://kolombus-001-site1.htempurl.com/api/Pets/${id}`)
             .then((response) => {
                 setPet(response.data);
                 setLoading(false);
@@ -130,17 +131,7 @@ const PetById = () => {
                 </Col>
             </Row>
             {imagesLoaded && (
-                <Row className='gallery d-flex justify-content-center mt-5'>
-                    {filteredImages ? filteredImages.map((img, index) => (
-                        <Col className='pt-2 pb-2' key={index} xs={6} md={4} lg={3}>
-                            <div className='pet-picture-wrapper'>
-                                <Card>
-                                    <Card.Img className='pet-picture' loading='lazy' variant="top" src={`data:image/jpeg;base64,${img.image}`} alt={`Dog ${index + 1}`} />
-                                </Card>
-                            </div>
-                        </Col>
-                    )) : <div className='text-center fs-3'>No images available!</div>}
-                </Row>
+                <Images images={filteredImages} />
             )}
         </Container>
     );
