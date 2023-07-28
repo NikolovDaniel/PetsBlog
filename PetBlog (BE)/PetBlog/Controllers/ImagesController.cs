@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PetBlog.Core.Contracts;
 using PetBlog.Core.Models.Image;
 
@@ -14,6 +13,29 @@ namespace PetBlog.Controllers
         public ImagesController(IImageService imageService)
         {
             this._imageService = imageService;
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult GetPetImagesById(Guid id)
+        {
+            try
+            {
+                var model = this._imageService.GetImagesByPetId(id);
+
+                if (model == null)
+                {
+                    return NotFound("A Pet with this Id was not found.");
+                }
+
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(string.Format($"Something went wrong...\nError: {ex.Message}"));
+            }
         }
 
         [HttpPost("{apiKey}")]

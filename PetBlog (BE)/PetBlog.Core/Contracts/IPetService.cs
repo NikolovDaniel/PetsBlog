@@ -13,6 +13,7 @@ namespace PetBlog.Core.Contracts
         IEnumerable<PetCardViewModel> GetAll();
         Task AddAsync(PetFormModel model);
         Task<ServiceResult<bool>> UpdateAsync(PetEditFormModel model);
+        Task<PetViewModel> GetByIdWithNoImagesAsync(Guid petId);
         Task<PetViewModel> GetByIdAsync(Guid petId);
         Task<PetEditViewModel> GetByIdAsync(Guid petId, Guid ownerId);
         Task<PetViewModel> RandomAsync();

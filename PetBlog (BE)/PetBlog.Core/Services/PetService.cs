@@ -99,6 +99,20 @@ namespace PetBlog.Core.Services
             return model;
         }
 
+        public async Task<PetViewModel> GetByIdWithNoImagesAsync(Guid petId)
+        {
+            var pet = await this._repository.GetByIdAsync<Pet>(petId);
+
+            if (pet == null)
+            {
+                return null;
+            }
+
+            PetViewModel model = _mapper.Map<PetViewModel>(pet);
+
+            return model;
+        }
+
         public async Task<PetViewModel> GetByIdAsync(Guid petId)
         {
             var pet = await this._repository.GetByIdAsync<Pet>(petId);

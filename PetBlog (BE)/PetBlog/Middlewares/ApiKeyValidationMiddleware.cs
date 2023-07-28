@@ -40,7 +40,8 @@ namespace PetBlog.Middlewares
 
         private bool IsExcludedAction(HttpContext context)
         {
-            return context.Request.Path.StartsWithSegments("/api/Pets", StringComparison.OrdinalIgnoreCase)
+            return (context.Request.Path.StartsWithSegments("/api/Pets", StringComparison.OrdinalIgnoreCase)
+                || context.Request.Path.StartsWithSegments("/api/Images", StringComparison.OrdinalIgnoreCase))
               && context.Request.Method.Equals("GET", StringComparison.OrdinalIgnoreCase);
         }
     }

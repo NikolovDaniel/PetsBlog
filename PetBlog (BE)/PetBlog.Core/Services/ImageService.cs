@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using PetBlog.Core.Contracts;
 using PetBlog.Core.Models.Image;
 using PetBlog.Infrastructure.Data.Entities;
@@ -16,6 +17,23 @@ namespace PetBlog.Core.Services
             this._repository = repository;
             this._mapper = mapper;
         }
+
+        public IEnumerable<ImageViewModel> GetImagesByPetId(Guid id)
+        {
+            Expression<Func<Images, bool>> expression
+              = i => i.PetId == id;
+
+            var images = this._repository.AllReadonly<Images>(expression);
+
+            var model = images.Select(img => new ImageViewModel()
+            {
+                Image = Convert.ToBase64String(img.Data),
+                Category = img.Category
+            });
+
+            return model;
+        }
+
 
         public async Task AddAsync(ImageFormModel model, byte[] imageData)
         {

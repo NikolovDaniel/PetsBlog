@@ -72,6 +72,29 @@ namespace PetBlog.Controllers
             }
         }
 
+        [HttpGet("NoImages/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> GetByIdWithNoImages(Guid id)
+        {
+            try
+            {
+                PetViewModel model = await this._petService.GetByIdWithNoImagesAsync(id);
+
+                if (model == null)
+                {
+                    return NotFound("A Pet with this Id was not found.");
+                }
+
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(string.Format($"Something went wrong...\nError: {ex.Message}"));
+            }
+        }
+
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
