@@ -1,6 +1,7 @@
 import { Row, Col, Container, Image } from 'react-bootstrap';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Images from '../Image/Images'
 import "../CSS/PetById.css";
 
 const RandomPet = () => {
