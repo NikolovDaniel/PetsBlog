@@ -1,6 +1,7 @@
 import { Row, Col, Container, Image } from 'react-bootstrap';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import RingLoader from 'react-spinners/RingLoader';
 import Images from '../Image/Images'
 import "../CSS/PetById.css";
 
@@ -40,8 +41,11 @@ const RandomPet = () => {
     }, []);
 
     if (loading) {
-        return <div className='text-center fs-3'>Loading...</div>;
-    }
+        return <div className='text-center fs-3'>
+                <h4 className='headers'>Pet Loading</h4>
+                <RingLoader size={75}/>
+                </div>;
+      }
 
     if (Object.keys(pet).length === 0) {
         return <div className='text-center fs-3'>Unable to fetch pet data.</div>;

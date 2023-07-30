@@ -1,6 +1,7 @@
 import { Row, Col, Card, Form } from 'react-bootstrap';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import RingLoader from 'react-spinners/RingLoader';
 import "../CSS/PetById.css";
 
 const Images = ({ id }) => {
@@ -27,7 +28,10 @@ const Images = ({ id }) => {
     }, []);
 
     if (loading) {
-        return <div className='headers text-center fs-3'>Images loading...</div>;
+        return <div className='text-center fs-3'>
+            <h4 className='headers'>Images Loading</h4>
+            <RingLoader size={75}/>
+            </div>;
     }
 
     const allCategories = ['All', ...new Set(Object.values(images).map((image) => image.category))];

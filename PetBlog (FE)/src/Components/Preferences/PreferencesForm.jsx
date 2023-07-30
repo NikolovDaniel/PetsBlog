@@ -98,8 +98,6 @@ const PreferencesForm = () => {
         setShowModal(false);
     };
 
-    sessionStorage.setItem('ownerId', 'daniel')
-
     return (
         <Container fluid>
             <Row>

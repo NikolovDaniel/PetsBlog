@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import AllPets from './Components/Navbar/AllPets';
-import PetPanel from './Components/Navbar/PetPanel';
 import PetById from './Components/Pet/PetById';
 import PetForm from './Components/Pet/PetForm';
 import PetRandom from './Components/Navbar/PetRandom';
@@ -20,7 +19,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<AllPets />} />
           <Route path="/PetsBlog" element={<AllPets />} />
-          <Route path="/pet-panel" element={<PetPanel />} />
           <Route path="/random-pet" element={<PetRandom />} />
           <Route path="/pet/:id" element={<PetById />} />
           <Route path="/pet-add" element={<PetForm />} />

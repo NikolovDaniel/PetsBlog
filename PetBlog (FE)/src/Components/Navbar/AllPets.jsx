@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Form } from 'react-bootstrap';
+import RingLoader from 'react-spinners/RingLoader';
 import PetCard from '../Pet/PetCard';
 import '../CSS/AllPets.css';
 
@@ -25,7 +26,10 @@ const AllPets = () => {
   }, []);
 
   if (loading) {
-    return <div className='headers text-center fs-3'>Loading...</div>;
+    return <div className='text-center fs-3'>
+            <h4 className='headers'>Pets Loading</h4>
+            <RingLoader size={75}/>
+            </div>;
   }
 
   if (Object.keys(pets).length === 0) {
