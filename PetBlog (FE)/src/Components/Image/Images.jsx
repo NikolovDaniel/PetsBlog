@@ -28,10 +28,12 @@ const Images = ({ id }) => {
     }, []);
 
     if (loading) {
-        return <div className='d-flex flex-column justify-content-center align-items-center'>
+        return <div className='d-flex flex-column justify-content-center align-items-center mt-3 mb-3'>
             <h4 className='headers'>Images Loading</h4>
-            <RingLoader size={75}/>
-            </div>;
+            <div>
+                <RingLoader size={75} />
+            </div>
+        </div>;
     }
 
     const allCategories = ['All', ...new Set(Object.values(images).map((image) => image.category))];

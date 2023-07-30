@@ -41,10 +41,12 @@ const RandomPet = () => {
     }, []);
 
     if (loading) {
-        return <div className='d-flex flex-column justify-content-center align-items-center'>
+        return <div className='d-flex flex-column justify-content-center align-items-center mt-3 mb-3'>
             <h4 className='headers'>Pet Loading</h4>
-            <RingLoader size={75}/>
-            </div>;
+            <div>
+                <RingLoader size={75} />
+            </div>
+        </div>;
     }
 
     if (Object.keys(pet).length === 0) {
