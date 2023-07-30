@@ -28,7 +28,7 @@ const Images = ({ id }) => {
     }, []);
 
     if (loading) {
-        return <div className='text-center fs-3'>
+        return <div className='d-flex flex-column justify-content-center align-items-center'>
             <h4 className='headers'>Images Loading</h4>
             <RingLoader size={75}/>
             </div>;

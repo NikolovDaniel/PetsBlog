@@ -43,11 +43,11 @@ const PetById = () => {
     }, []);
 
     if (loading) {
-        return <div className='text-center fs-3'>
-                <h4 className='headers'>Pet Loading</h4>
-                <RingLoader size={75}/>
-                </div>;
-      }
+        return <div className='d-flex flex-column justify-content-center align-items-center'>
+            <h4 className='headers'>Pet Loading</h4>
+            <RingLoader size={75}/>
+            </div>;
+    }
 
     if (Object.keys(pet).length === 0) {
         return <div className='headers text-center fs-3'>Unable to fetch pet data.</div>;
