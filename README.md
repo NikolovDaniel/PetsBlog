@@ -13,7 +13,7 @@ Everything which has functionality works with Pet ID, Owner ID and "API Key".
   * The Pet and Owner ID are provided when creating the Pet.
   * API Key can be received by contacting me. That is to ensure that there is no spam, because space is limited.
 
-The applicaiton can display information about the club such as: 
+The applicaiton can display information about the Pets such as: 
 * Pet Biography
 * Collection of Pet's Images.
 
